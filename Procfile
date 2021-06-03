@@ -1,0 +1,1 @@
+web: java  -jar build/libs/COVID-19-Web-0.0.1-SNAPSHOT.jar -Dserver.port=$PORT

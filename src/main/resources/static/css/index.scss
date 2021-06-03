@@ -1,0 +1,120 @@
+html,
+body {
+    min-height: 100vh;
+    margin: 0px;
+}
+
+//ヘッダ
+header .div-header {
+    position: fixed;
+    width: 100%;
+    background-color: rgb(52, 58, 64);
+    color: white;
+    padding: 40px;
+}
+
+//見出し
+nav .div-catprion {
+    background-color: rgb(130, 130, 130);
+    color: white;
+    padding: 200px;
+    h1 {
+        margin: 0px;
+    }
+}
+
+.div-parent {
+    display: table;
+    float: left;
+    //サイドバー
+    & .div-side-bar {
+        display: table-cell;
+        width: 35vh;
+        background-color: rgb(238, 249, 250);
+        & .div-side-bar-child {
+            position: sticky;
+            top: 110px;
+        }
+    }
+    //main要素
+    & .div-main {
+        display: table-cell;
+        background-color: white;
+        height: auto;
+        width: 100vw;
+        //全国単位グラフ
+        & .div-main-graph {
+            width: 1200px;
+            margin-left: 200px;
+            background-color: rgb(200, 249, 250);
+            & #main-graph {
+                max-width: 1000px;
+                min-height: 500px;
+                margin: 50px 0px 100px 100px;
+            }
+        }
+        //都道府県グラフ
+        & .div-prefectures {
+            overflow: auto;
+            & .div-prefectures-graph {
+                display: table;
+                float: left;
+                margin: 50px 0px 100px 40px;
+                & canvas {
+                    display: table-cell;
+                    max-width: 1000px;
+                    min-height: 250px;
+                    background-color: antiquewhite;
+                    margin-top: 20px;
+                }
+            }
+        }
+        //都道府県別グラフ
+        & .div-prefectures-separate {
+            overflow: auto;
+            & .div-prefectures-separate-graph {
+                display: table;
+                float: left;
+                margin: 50px 0px 100px 200px;
+                background-color: aqua;
+                & p {
+                    margin: 0px;
+                }
+                & #div-new-Infected-person {
+                    width: 500px;
+                    height: 250px;
+                    background-color: antiquewhite;
+                    & #div-new-Infected-person-title {
+                        position: relative;
+                        transform: translateY(10px);
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        background-color: whitesmoke;
+                        font-size: xx-large;
+                    }
+                    & #div-new-Infected-person-count {
+                        text-align: center;
+                        margin-top: 65px;
+                        font-size: xx-large;
+                    }
+                    & p {
+                        position: relative;
+                        text-align: center;
+                    }
+                }
+                & canvas {
+                    display: table-cell;
+                    max-width: 1000px;
+                    min-height: 250px;
+                    background-color: antiquewhite;
+                }
+            }
+        }
+    }
+}
+
+footer .div-footer {
+    background-color: rgb(130, 130, 130);
+    color: white;
+    padding: 50px;
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.batch.repository.ApiDataRepository" >
+    <insert id="insertFreeApiData" parameterType="com.example.demo.batch.bean.FreeApiDataBean">
+        INSERT INTO T_API_FREE_DATA 
+        	(
+        		id
+        		,name_ja
+				,name_en
+				,lat
+				,lng
+				,population
+				,cases_date
+				,deaths_date
+				,pcr_date
+				,hospitalize_date
+				,severe_date
+				,discharge_date
+				,symptom_confirming_date
+				,cases
+				,deaths
+				,pcr
+				,hospitalize
+				,severe
+				,discharge
+				,symptom_confirming
+			)
+		VALUES
+		<foreach collection="param" item ="item" separator="," index="index">
+			(
+				#{index}+1
+				,#{item.nameJapan}
+				,#{item.nameEnglish}
+				,#{item.lat}
+				,#{item.lng}
+				,#{item.population}
+				,to_date(#{item.lastUpdates.casesDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.deathsDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.pcrDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.hospitalizeDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.severeDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.dischargeDate},'yyyyMMdd')
+				,to_date(#{item.lastUpdates.symptomConfirmingDate},'yyyyMMdd')
+				,#{item.cases}
+				,#{item.deaths}
+				,#{item.pcr}
+				,#{item.hospitalize}
+				,#{item.severe}
+				,#{item.discharge}
+				,#{item.symptomConfirming}
+			)
+		</foreach>
+    </insert>
+    <insert id ="insertFreeApiDataDay" parameterType="com.example.demo.batch.bean.ItemList">
+    	INSERT INTO T_API_CABINET_DATA
+    		(
+    		    id
+    			,cases_date
+    			,name_ja
+    			,cases
+    		)
+    	VALUES
+    	<foreach collection="param" item="item" separator="," index="index">
+    		(
+    		    #{index}+1
+    			,to_date(#{item.lastUpdates.casesDate},'yyyyMMdd')
+    			,#{item.nameJapan}
+    			,#{item.cases}
+    		)
+    	</foreach>
+    </insert>
+    
+    <insert id = "insertSickBedApiData" parameterType="com.example.demo.batch.bean.SickBedApiDataBean">
+    	INSERT INTO T_API_SICKBED_DATA
+    		(
+    			id
+    			,name_ja
+    			,accept_hospitalbed
+    			,hospitalbed_use_rate
+    			,accept_inn
+    			,accept_inn_use_rate
+    			,updateDate
+    		)
+    		VALUES
+    		<foreach collection="param" item="item" separator="," index="index">
+    			(
+    		    	#{index}+1
+    				,#{item.nameJa}
+    				,#{item.acceptHospitalBed}
+    				,to_number(#{item.hospitalBedUseRate},'9,999,999,999')
+    				,#{item.acceptInn}
+    				,to_number(#{item.acceptInnUseRate},'9,999,999,999')
+    				,to_date(#{item.updateDate},'yyyy-MM-dd')
+    			)
+    		</foreach>
+	</insert>
+	<select id="selectCheckApiCabnetData" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT 
+			COUNT(*)
+		FROM
+			t_api_cabinet_data
+		<if test="param != null and param != ''">
+			WHERE
+				cases_date = to_date(#{param},'yyyyMMdd')
+		</if>
+	</select>
+	
+	<delete id = "deleteTwoDaysAgoData">
+		DELETE 
+		FROM 
+			T_API_CABINET_DATA T1
+		WHERE
+			cases_date = 
+				(
+					SELECT 
+						MIN(T2.cases_date)
+					FROM
+						T_API_CABINET_DATA T2
+				)
+	</delete>
+</mapper>

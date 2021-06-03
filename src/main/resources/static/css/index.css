@@ -1,0 +1,183 @@
+html{
+	height:auto;
+	overflow-x: hidden;
+}
+body {
+	height:100%;
+}
+header{
+	padding: 40px;
+}
+header .div-header {
+    position: fixed;
+    width: 100%;
+    height:80px;
+    top:0px;
+    left:0px;
+    background-color: #343a40;
+    color: white;
+    z-index : 1;
+    
+}
+
+header .div-header H1{
+	display : inline-block;
+	margin : 0px;
+}
+
+
+
+main{
+	height:auto;
+}
+
+.div-side-bar-wide{
+	width : 210px;
+	position: sticky;
+    top: 130px;
+}
+.div-catprion {
+	position: sticky;
+    top: 80px;
+    background-color: #828282;
+    color: white;
+    z-index : 1;
+    width:4000px;
+}
+
+.div-catprion h1 {
+    margin: 0px;
+     z-index : 0;
+}
+
+.div-catprion a{
+	margin-Left : 10px;
+    cursor : pointer;
+}
+
+.div-catprion a:link{
+    color : white;
+}
+
+.div-catprion a:visited{
+    color : white;
+}
+.div-parent {
+    display: table;
+    float: left;
+}
+
+.div-parent .div-side-bar {
+    display: table-cell;
+    background-color: #eef9fa;
+    
+}
+
+.div-parent .div-side-bar .div-side-bar-child {
+    position: -webkit-sticky;
+    margin : 10px;
+    font-size: 1.2em;
+}
+
+.div-parent .div-side-bar .div-side-bar-child div{
+    margin-top:30px;
+    cursor : pointer;
+}
+.div-parent .div-main {
+    display: table-cell;
+    background-color: white;
+    height: auto;
+    width: 100vw;
+}
+
+.div-parent .div-main .div-main-graph {
+    width: 1200px;
+    margin-left: 200px;
+    background-color: #c8f9fa;
+}
+
+.div-parent .div-main .div-main-graph #main-graph {
+    max-width: 1000px;
+    min-height: 500px;
+    margin: 50px 0px 100px 100px;
+}
+
+.div-parent .div-main .div-prefectures {
+    overflow: auto;
+}
+
+.div-parent .div-main .div-prefectures .div-prefectures-graph {
+    display: table;
+    float: left;
+    margin: 50px 0px 100px 40px;
+}
+
+.div-parent .div-main .div-prefectures .div-prefectures-graph canvas {
+    display: table-cell;
+    max-width: 1000px;
+    min-height: 250px;
+    background-color: antiquewhite;
+    margin-top: 20px;
+}
+
+.div-parent .div-main .div-prefectures-separate {
+    overflow: auto;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph {
+    display: table;
+    float: left;
+    margin: 50px 0px 100px 200px;
+    
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph p {
+    margin: 0px;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph #div-new-Infected-person {
+    width: 500px;
+    height: 250px;
+    background-color: antiquewhite;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph #div-new-Infected-person #div-new-Infected-person-title {
+    position: relative;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: whitesmoke;
+    font-size: xx-large;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph #div-new-Infected-person #div-new-Infected-person-count {
+    text-align: center;
+    margin-top: 65px;
+    font-size: xx-large;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph #div-new-Infected-person p {
+    position: relative;
+    text-align: center;
+}
+
+.div-prefectures-graph-wide{
+	width : 1650px;
+}
+
+.div-parent .div-main .div-prefectures-separate .div-prefectures-separate-graph canvas {
+    display: table-cell;
+    max-width: 1000px;
+    min-height: 250px;
+    background-color: antiquewhite;
+}
+
+footer .div-footer {
+    background-color: #828282;
+    color: white;
+    padding : 30px;
+}
+
+
+/*# sourceMappingURL=index.css.map */

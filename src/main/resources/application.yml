@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/postgres
+    username: postgres
+    password: password
+    platform : postgresql
+    initialization-mode : always
+server:
+    port: ${PORT:8080}
+    tomcat:
+      relaxed-query-chars: ['|','{','}','[',']']
+      relaxed-path-chars: ['|','{','}','[',']']
+  

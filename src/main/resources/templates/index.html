@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <title>COVID-19-WebSite</title>
+</head>
+
+<body>
+    <header>
+        <div class="div-header">
+            <h1>コロナ感染者確認サイト</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="div-catprion">
+    		<span class="span-href">
+        		<a href="" class="newsInfo" rel="noopener noreferrer"></a>
+        	</span>
+    	</div>
+        <div class="div-parent">
+            <div class="div-side-bar">
+            	<div class = "div-side-bar-wide">
+                	<div class="div-side-bar-child">
+                    	<div>
+                        	<p class="sidebar-content1">
+                        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
+  									<path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
+	  								<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+								</svg>
+								全国総感染者数
+							</p>
+                	    </div>
+	                    <div>
+    	                    <p class="sidebar-content2">
+        	                	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
+  									<path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
+  									<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+								</svg>
+                        		全都道府県別感染者数
+	                        </p>	
+    	                </div>
+        	            <div>
+            	            <p class="sidebar-content3">
+                	        	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
+  									<path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
+  									<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+								</svg>
+    	                    	都道府県別詳細情報
+        	                </p>
+            	        </div>
+            		</div>
+                </div>
+            </div>
+            <div class="div-main">
+                <div class="div-nationwide">
+                    <H2>
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+  							<path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+						</svg>
+						全国総感染者数・退院・療養解除数・死亡者数
+					</H2>
+                    <hr>
+                    <p>※更新日：感染者者数 [[${apiDataBeanModel.apiNationwideDataListBean.casesUpdataDate}]]・退院者数 [[${apiDataBeanModel.apiNationwideDataListBean.dischargeUpdataDate}]]・:死者数 [[${apiDataBeanModel.apiNationwideDataListBean.deathUpdataDate}]]</p>
+                    <div class="div-main-graph">
+                        <canvas id="main-graph"></canvas>
+                    </div>
+                    <p>
+                </div>
+                <div class="div-prefectures">
+                    <H2>
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+  							<path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+						</svg>
+						都道府県総感染者数
+					</H2>
+                    <hr>
+                    <p>※更新日:[[${apiDataBeanModel.apiNationwideDataListBean.casesUpdataDate}]]</p>
+                    <div class = "div-prefectures-graph-wide">
+                    	<div class="div-prefectures-graph">
+                        	<canvas id="prefectures-graph-hokkaido-tohoku"></canvas>
+                        	<canvas id="prefectures-graph-Kanto"></canvas>
+                    	</div>
+                    	<div class="div-prefectures-graph">
+                        	<canvas id="prefectures-graph-chubu"></canvas>
+                        	<canvas id="prefectures-graph-kinki"></canvas>
+                    	</div>
+                    	<div class="div-prefectures-graph">
+                        	<canvas id="prefectures-graph-chugoku-shikoku"></canvas>
+                        	<canvas id="prefectures-graph-kyushu-okinawa"></canvas>
+                    	</div>
+                    </div>
+                </div>
+                <div class="div-prefectures-separate">
+                    <H2>
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+  							<path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+						</svg>
+						都道府県別
+					</H2>
+                    <hr>
+                    <div>
+                        <form>
+                            <select class="selectBox">
+                            	<option th:each="prefecture : ${apiDataBeanModel.prefectureSelectBoxList}" 
+           								th:value="${prefecture}" 
+           								th:text="${prefecture}" >
+                        	</select>
+                        </form>
+                        <span>のデータを表示します。</span>
+                    </div>
+                    <div class="div-prefectures-separate-graph">
+                        <p>※更新日：[[${apiDataBeanModel.apiPrefecturesDetailListData.todayCasesUpdateDate}]]</p>
+                        <div id="div-new-Infected-person">
+                            <div id="div-new-Infected-person-title">
+								新規感染者
+                            </div>
+                            <div id="div-new-Infected-person-count">
+                                [[${apiDataBeanModel.apiPrefecturesDetailListData.todayCasesCount}]]人
+                            </div>
+                        </div>
+                        <p>※更新日：感染者数 [[${apiDataBeanModel.apiPrefecturesDetailListData.casesUpdateDate}]]・退院者数 [[${apiDataBeanModel.apiPrefecturesDetailListData.dischargeUpdateDate}]]・:死者数 [[${apiDataBeanModel.apiPrefecturesDetailListData.deathsUpdateDate}]]</p>
+                        <canvas id="infectes-person-percentage"></canvas>
+                    </div>
+                    <div class="div-prefectures-separate-graph">
+                        <p>※更新日：[[${apiDataBeanModel.apiPrefecturesDetailListData.acceptUpdateDate}]]</p>
+                        <canvas id="accept-HospitalBed"></canvas>
+                        <p>※更新日：[[${apiDataBeanModel.apiPrefecturesDetailListData.acceptUpdateDate}]]</p>
+                        <canvas id="accept-InnBed"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="hidden" id="apiDataBean" th:value="${apiDataBean}">
+    </main>
+
+
+    <footer>
+        <div class="div-footer">
+            
+        </div>
+    </footer>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="/js/index.js"></script>
+
+</html>

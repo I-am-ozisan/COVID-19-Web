@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.example.demo.app.repository.ApiDataSelectRepository" >
+        	<select id="getSelectNationwideData" resultType="com.example.demo.app.bean.ApiNationwideData">
+        		SELECT 
+        			SUM(cases) AS casesCount
+        			,SUM(discharge) AS dischargeCount
+        			,SUM(deaths) AS deathCount
+        			,MAX(CASES_DATE) AS casesUpdataDate
+        			,MAX(DEATHS_DATE) AS deathUpdataDate
+        			,MAX(DISCHARGE_DATE) AS dischargeUpdataDate
+        		FROM 
+        			T_API_FREE_DATA T1
+      	  	</select>
+      	  	<select id="getSelectPrefecturesData" resultType="com.example.demo.app.bean.ApiPrefecturesData">
+        		SELECT 
+        			T1.name_ja AS nameJa
+        			,T1.cases AS casesCount
+        		FROM 
+        			T_API_FREE_DATA T1
+      	  	</select>
+      	  	<select id="getSelectPrefecturesDetailData"  parameterType="java.lang.String" resultType="com.example.demo.app.bean.ApiPrefecturesDetailData">
+      	  	SELECT
+    			T1.name_ja AS nameJa
+    			, T1.cases - T7.cases AS todayCasesCount
+    			, T9.cases AS casesCount
+    			, T9.deaths AS deathCount
+    			, T9.discharge AS dischargeCount
+    			, T8.accept_hospitalbed AS hospitalbedCount
+    			, CASE 
+        			WHEN T8.hospitalbed_use_rate = '0' 
+            			THEN 0 
+        			ELSE (T8.accept_hospitalbed *( T8.hospitalbed_use_rate/100)) 
+        			END AS notAcceptHospitalbedCount  
+        			
+    			, T8.accept_inn AS innCount
+    			, CASE 
+        			WHEN T8.accept_inn_use_rate = '0' 
+            		THEN 0
+        			ELSE (T8.accept_inn * (T8.accept_inn_use_rate/100)) 
+        			END AS notAcceptInnCount
+    			, T1.CASES_DATE AS todayCasesUpdateDate
+    			, T9.CASES_DATE AS casesUpdateDate
+    			, T9.DISCHARGE_DATE AS dischargeUpdateDate
+    			, T9.DEATHS_DATE AS deathsUpdateDate
+    			, T8.UPDATEDATE AS acceptUpdateDate
+			FROM
+    			t_api_cabinet_data T1 
+    			INNER JOIN 
+    				( 
+        				SELECT
+            				* 
+        				FROM
+            				t_api_cabinet_data T2 
+        				WHERE
+            				T2.cases_date = 
+            					( 
+                					SELECT
+                    					MIN(T4.cases_date) 
+                					FROM
+                    					t_api_cabinet_data T4 
+                					WHERE
+                    					T2.id = T4.id
+            					)
+    				) T7 
+        			ON T1.id = T7.id 
+    			INNER JOIN T_API_SICKBED_DATA T8 
+        			ON T1.id = T8.id 
+    			INNER JOIN t_api_free_data T9 
+        			ON T1.id = T9.id 
+				WHERE
+    				T1.cases_date = 
+    					( 
+        					SELECT
+            					MAX(T8.cases_date) 
+        					FROM
+            					t_api_cabinet_data T8 
+        					WHERE
+            					T1.id = T8.id
+    					)
+    				AND
+    					T8.name_ja = #{param} 
+      	  	</select>
+      	  	<select id ="getSelectBoxData" resultType="java.lang.String">
+      	  	SELECT 
+      	  		name_ja
+      	  	FROM 
+      	  		T_API_SICKBED_DATA
+      	  	</select>
+        </mapper>

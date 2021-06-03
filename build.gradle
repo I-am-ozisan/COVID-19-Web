@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-batch', version: '2.5.0'
+	implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.5.0'
+	implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.5.0'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.20'
+	implementation "javax.xml.bind:jaxb-api:2.3.1"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.1"
+}
+
+test {
+	useJUnitPlatform()
+}
+
+apply plugin: 'java'
+
+jar {
+  baseName = 'COVID-19-Web-0.0.1-SNAPSHOT'
+  version =  '0.1.0'
+}
+
+task stage {
+  dependsOn build
+}
+
