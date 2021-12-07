@@ -47,20 +47,20 @@
     			, T9.DEATHS_DATE AS deathsUpdateDate
     			, T8.UPDATEDATE AS acceptUpdateDate
 			FROM
-    			t_api_cabinet_data T1 
+    			T_TODAY_API_DATA T1 
     			INNER JOIN 
     				( 
         				SELECT
             				* 
         				FROM
-            				t_api_cabinet_data T2 
+            				T_TODAY_API_DATA T2 
         				WHERE
             				T2.cases_date = 
             					( 
                 					SELECT
                     					MIN(T4.cases_date) 
                 					FROM
-                    					t_api_cabinet_data T4 
+                    					T_TODAY_API_DATA T4 
                 					WHERE
                     					T2.id = T4.id
             					)
@@ -76,7 +76,7 @@
         					SELECT
             					MAX(T8.cases_date) 
         					FROM
-            					t_api_cabinet_data T8 
+            					T_TODAY_API_DATA T8 
         					WHERE
             					T1.id = T8.id
     					)

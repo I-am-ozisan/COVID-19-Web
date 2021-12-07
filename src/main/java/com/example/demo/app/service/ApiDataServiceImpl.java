@@ -47,8 +47,6 @@ public class ApiDataServiceImpl implements ApiDataService {
 				this.getProcessingPrefecturesData(this.getApiPrefecturesDetailData(searchName)));
 		apiDataBean.setApiNewsData(this.getNewsApiInfo());
 		apiDataBean.setPrefectureSelectBoxList(repository.getSelectBoxData());
-
-		this.getNewsApiInfo();
 		return apiDataBean;
 	}
 

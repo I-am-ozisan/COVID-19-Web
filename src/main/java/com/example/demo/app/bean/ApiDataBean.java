@@ -8,12 +8,12 @@ import lombok.Data;
 public class ApiDataBean {
 
 	/**
-	 * 全国感染者・退院者・死亡者
+	 * 全国総感染者・総退院者・総死亡者数
 	 */
 	private ApiNationwideDataListBean apiNationwideDataListBean;
 
 	/**
-	 * 全都道府県の情報
+	 * 各都道府県総感染者数
 	 */
 	private ApiPrefectureDataListBean apiPrefecturesDataListBean;
 
