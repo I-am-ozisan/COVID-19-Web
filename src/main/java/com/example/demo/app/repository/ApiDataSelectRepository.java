@@ -39,9 +39,4 @@ public interface ApiDataSelectRepository {
 	 * SelectBoxの情報を取得。
 	 */
 	public List<String> getSelectBoxData();
-
-	/**
-	 * 不要データ削除処理
-	 */
-	public void deleteTwoDaysAgoData();
 }

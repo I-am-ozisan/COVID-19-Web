@@ -40,7 +40,6 @@ public class CreateApiDataTasklet implements Tasklet {
 	@Override
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 		this.insertFreeApiData();
-		this.insertCabinetApiData();
 		this.insertSickBedDate();
 		System.out.println("complete");
 		return RepeatStatus.FINISHED;
@@ -48,7 +47,7 @@ public class CreateApiDataTasklet implements Tasklet {
 	}
 
 	/**
-	 * 有志APIData取得
+	 * 各都道府県APIData取得
 	 */
 	private void insertFreeApiData() {
 		RestTemplate restTemplate = new RestTemplate();
@@ -57,23 +56,17 @@ public class CreateApiDataTasklet implements Tasklet {
 				.asList(restTemplate.getForObject(urlFreeApi, FreeApiDataBean[].class));
 		// Insert実施
 		repository.insertFreeApiData(arrayFreeApiDate);
+		this.insertTTodayApiDataTbl(arrayFreeApiDate);
 	}
 
 	/**
-	 * 有志APIData取得(当日・前日登録)
+	 * 当日感染者情報DB登録
 	 */
-	private void insertCabinetApiData() {
+	private void insertTTodayApiDataTbl(List<FreeApiDataBean> arrayFreeApiDate) {
 
-		RestTemplate restTemplate = new RestTemplate();
-		// Api取得
-		List<FreeApiDataBean> arrayFreeApiDate = Arrays
-				.asList(restTemplate.getForObject(urlFreeApi, FreeApiDataBean[].class));
-
-		Integer deleteCheckCount = repository.selectCheckApiCabnetData();
-		Integer insertCheckCount = repository
-				.selectCheckApiCabnetData(arrayFreeApiDate.get(1).getLastUpdates().getCasesDate());
+		Integer deleteCheckCount = repository.selectCheckData();
+		Integer insertCheckCount = repository.selectCheckData(arrayFreeApiDate.get(1).getLastUpdates().getCasesDate());
 		if (deleteCheckCount >= 95) {
-			// Insert実施
 			repository.deleteTwoDaysAgoData();
 		}
 		if (insertCheckCount == 0) {

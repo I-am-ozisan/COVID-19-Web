@@ -9,12 +9,12 @@ import lombok.Data;
 public class ApiPrefecturesDetailDataListBean {
 
 	/**
-	 * 検索都道府県
+	 * 検索選択都道府県名
 	 */
 	private String nameJa;
 
 	/**
-	 * 今日の新規感染者数
+	 * 当日新規感染者数
 	 */
 	private int todayCasesCount;
 

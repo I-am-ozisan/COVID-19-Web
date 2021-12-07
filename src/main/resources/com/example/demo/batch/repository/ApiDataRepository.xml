@@ -55,7 +55,7 @@
 		</foreach>
     </insert>
     <insert id ="insertFreeApiDataDay" parameterType="com.example.demo.batch.bean.ItemList">
-    	INSERT INTO T_API_CABINET_DATA
+    	INSERT INTO T_TODAY_API_DATA
     		(
     		    id
     			,cases_date
@@ -97,11 +97,11 @@
     			)
     		</foreach>
 	</insert>
-	<select id="selectCheckApiCabnetData" parameterType="java.lang.String" resultType="java.lang.Integer">
+	<select id="selectCheckData" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT 
 			COUNT(*)
 		FROM
-			t_api_cabinet_data
+			T_TODAY_API_DATA
 		<if test="param != null and param != ''">
 			WHERE
 				cases_date = to_date(#{param},'yyyyMMdd')
@@ -111,14 +111,14 @@
 	<delete id = "deleteTwoDaysAgoData">
 		DELETE 
 		FROM 
-			T_API_CABINET_DATA T1
+			T_TODAY_API_DATA T1
 		WHERE
 			cases_date = 
 				(
 					SELECT 
 						MIN(T2.cases_date)
 					FROM
-						T_API_CABINET_DATA T2
+						T_TODAY_API_DATA T2
 				)
 	</delete>
 </mapper>

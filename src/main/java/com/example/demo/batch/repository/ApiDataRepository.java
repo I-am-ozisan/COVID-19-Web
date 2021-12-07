@@ -14,45 +14,44 @@ import com.example.demo.batch.bean.SickBedApiDataBean;
 public interface ApiDataRepository {
 
 	/**
-	 * 有志APIDATA登録
+	 * 総感染者etc情報DB登録
 	 * 
 	 * @param arrayFreeApiDate API取得データ
 	 */
 	public void insertFreeApiData(@Param("param") List<FreeApiDataBean> arrayFreeApiDate);
 
 	/**
-	 * 有志APIDATA登録(前日・当日分登録)
+	 * 当日感染者情報DB登録
 	 * 
 	 * @param itemList API取得データ
 	 */
 	public void insertFreeApiDataDay(@Param("param") List<FreeApiDataBean> arrayFreeApiDate);
 
 	/**
-	 * 病床API登録
+	 * 前々日レコード既存データチェック
+	 * 
+	 * @param arrayFreeApiDate
+	 * @return
+	 */
+	public Integer selectCheckData();
+
+	/**
+	 * 当日分レコード既存データチェック
+	 * 
+	 * @param arrayFreeApiDate
+	 * @return
+	 */
+	public Integer selectCheckData(@Param("param") String caseDate);
+
+	/**
+	 * 病床情報DB登録
 	 * 
 	 * @param sickBedApiDataList API取得データ
 	 */
 	public void insertSickBedApiData(@Param("param") List<SickBedApiDataBean> sickBedApiDataList);
 
 	/**
-	 * 有志APIDATA登録(前日・当日分登録)前Check
-	 * 
-	 * @param arrayFreeApiDate
-	 * @return
-	 */
-	public Integer selectCheckApiCabnetData();
-
-	/**
-	 * 有志APIDATA登録(前日・当日分登録)前Check
-	 * 
-	 * @param arrayFreeApiDate
-	 * @return
-	 */
-	public Integer selectCheckApiCabnetData(@Param("param") String caseDate);
-
-	/**
-	 * 最も古い日付のレコードを削除
-	 * 
+	 * 最古日付レコード削除
 	 */
 	public void deleteTwoDaysAgoData();
 }

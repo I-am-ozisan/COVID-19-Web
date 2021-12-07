@@ -6,7 +6,7 @@ import lombok.Data;
 public class ApiNewsData {
 
 	/**
-	 * item
+	 * Channel
 	 */
 	private Channel channel;
 }
