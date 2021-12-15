@@ -89,7 +89,7 @@ public class ApiDataServiceImpl implements ApiDataService {
 	 * @param apiPrefecturesDatasList 都道府県情報
 	 * @return 分割後情報
 	 */
-	private ApiPrefectureDataListBean getProcessingData(List<ApiPrefecturesData> apiPrefecturesDatasList) {
+	private ApiPrefectureDataListBean getProcessingData(List<ApiPrefecturesData> apiPrefecturesDataList) {
 		// 都道府県を地方ごとに分割・javascript用に加工。
 		ApiPrefectureDataListBean apiPrefectureDataListBean = new ApiPrefectureDataListBean();
 		List<Integer> hokkaidoTohokuCountList = new ArrayList<>();
@@ -105,32 +105,32 @@ public class ApiDataServiceImpl implements ApiDataService {
 		List<Integer> kyushuCountList = new ArrayList<>();
 		List<String> kyushuNameList = new ArrayList<>();
 
-		for (int i = 0; i < apiPrefecturesDatasList.size(); i++) {
+		for (ApiPrefecturesData apiPrefecturesData : apiPrefecturesDataList) {
 
-			if (i <= 0 || i <= 6) {
+			if (apiPrefecturesData.getLocalId().equals("1")) {
 				// 北海道・東北地方
-				hokkaidoTohokuCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				hokkaidoTohokuNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
-			} else if (i <= 13) {
+				hokkaidoTohokuCountList.add(apiPrefecturesData.getCasesCount());
+				hokkaidoTohokuNameList.add(apiPrefecturesData.getNameJa());
+			} else if (apiPrefecturesData.getLocalId().equals("2")) {
 				// 関東地方
-				kantoCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				kantoNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
-			} else if (i <= 22) {
+				kantoCountList.add(apiPrefecturesData.getCasesCount());
+				kantoNameList.add(apiPrefecturesData.getNameJa());
+			} else if (apiPrefecturesData.getLocalId().equals("3")) {
 				// 中部地方
-				chubuCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				chubuNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
-			} else if (i <= 29) {
+				chubuCountList.add(apiPrefecturesData.getCasesCount());
+				chubuNameList.add(apiPrefecturesData.getNameJa());
+			} else if (apiPrefecturesData.getLocalId().equals("4")) {
 				// 近畿地方
-				kinkiCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				kinkiNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
-			} else if (i <= 38) {
+				kinkiCountList.add(apiPrefecturesData.getCasesCount());
+				kinkiNameList.add(apiPrefecturesData.getNameJa());
+			} else if (apiPrefecturesData.getLocalId().equals("5")) {
 				// 中国・四国地方
-				chugokushikokuCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				chugokushikokuNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
+				chugokushikokuCountList.add(apiPrefecturesData.getCasesCount());
+				chugokushikokuNameList.add(apiPrefecturesData.getNameJa());
 			} else {
 				// 九州・沖縄
-				kyushuCountList.add(apiPrefecturesDatasList.get(i).getCasesCount());
-				kyushuNameList.add(apiPrefecturesDatasList.get(i).getNameJa());
+				kyushuCountList.add(apiPrefecturesData.getCasesCount());
+				kyushuNameList.add(apiPrefecturesData.getNameJa());
 			}
 		}
 

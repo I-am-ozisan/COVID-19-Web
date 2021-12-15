@@ -15,4 +15,8 @@ public class ApiPrefecturesData {
 	 */
 	private Integer casesCount;
 
+	/**
+	 * 地方分類Id
+	 */
+	private String localId;
 }
