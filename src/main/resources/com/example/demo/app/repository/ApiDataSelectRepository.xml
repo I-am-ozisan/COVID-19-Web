@@ -18,8 +18,13 @@
         		SELECT 
         			T1.name_ja AS nameJa
         			,T1.cases AS casesCount
+        			,T2.LOCAL_ID AS localId
         		FROM 
         			T_API_FREE_DATA T1
+        			INNER JOIN M_LOCAL_MNG T2
+        				ON T1.NAME_JA = T2.NAME_JA
+        		ORDER BY 
+        			T1.ID ASC
       	  	</select>
       	  	<select id="getSelectPrefecturesDetailData"  parameterType="java.lang.String" resultType="com.example.demo.app.bean.ApiPrefecturesDetailData">
       	  	SELECT
