@@ -23,8 +23,8 @@ $(function() {
     setGraphData(createGraphObj("prefectures-graph-chugoku-shikoku",paramObj.apiPrefecturesDataListBean.chugokushikokuNameList, "人数",paramObj.apiPrefecturesDataListBean.chugokushikokuCountList, 0, "horizontalBar"));
     setGraphData(createGraphObj("prefectures-graph-kyushu-okinawa",paramObj.apiPrefecturesDataListBean.kyushuNameList, "人数",paramObj.apiPrefecturesDataListBean.kyushuCountList, 0, "horizontalBar"));
     setGraphData(createGraphObj("infectes-person-percentage", ["感染者数", "退院・療養解除数", "死者数"], "人数", paramObj.apiPrefecturesDetailListData.otherDataList, 0, "horizontalBar"));
-    setGraphData(createGraphObj("accept-HospitalBed", ["総確保病床数",  "使用済病床数"], "人数", paramObj.apiPrefecturesDetailListData.hospitalBedCountList, 0, "horizontalBar"));
-    setGraphData(createGraphObj("accept-InnBed", ["総確保宿泊部屋数",  "使用済宿泊部屋数"], "人数", paramObj.apiPrefecturesDetailListData.innCountList, 0, "horizontalBar"));
+    setGraphData(createGraphObj("accept-HospitalBed", ["総確保病床数",  "使用済病床数"], "病床数", paramObj.apiPrefecturesDetailListData.hospitalBedCountList, 0, "horizontalBar"));
+    setGraphData(createGraphObj("accept-InnBed", ["総確保宿泊部屋数",  "使用済宿泊部屋数"], "部屋数", paramObj.apiPrefecturesDetailListData.innCountList, 0, "horizontalBar"));
     //news情報を設定。
     setNewsApiInfo(paramObj);
     //要素の高さを指定。
@@ -56,8 +56,8 @@ $(".selectBox").change(function(){
 		success: function(data) {
 			destroyChart();
 			setGraphData(createGraphObj("infectes-person-percentage", ["感染者数", "退院・療養解除数", "死者数"], "人数", data.apiPrefecturesDetailListData.otherDataList, 0, "horizontalBar"));
-			setGraphData(createGraphObj("accept-HospitalBed", ["総確保病床数",  "使用済病床数"], "人数", data.apiPrefecturesDetailListData.hospitalBedCountList, 0, "horizontalBar"));
-			setGraphData(createGraphObj("accept-InnBed", ["総確保宿泊部屋数",  "使用済宿泊部屋数"], "人数", data.apiPrefecturesDetailListData.innCountList, 0, "horizontalBar"));
+			setGraphData(createGraphObj("accept-HospitalBed", ["総確保病床数",  "使用済病床数"], "病床数", data.apiPrefecturesDetailListData.hospitalBedCountList, 0, "horizontalBar"));
+			setGraphData(createGraphObj("accept-InnBed", ["総確保宿泊部屋数",  "使用済宿泊部屋数"], "部屋数", data.apiPrefecturesDetailListData.innCountList, 0, "horizontalBar"));
 			$("#div-new-Infected-person-count").text(data.apiPrefecturesDetailListData.todayCasesCount+"人");
         },
 			
