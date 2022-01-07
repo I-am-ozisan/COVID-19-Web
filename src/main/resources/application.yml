@@ -6,6 +6,9 @@ spring:
     password: password
     platform : postgresql
     initialization-mode : always
+    hikari:
+      minimum-idle: 1
+    
 server:
     port: ${PORT:8080}
     tomcat:
