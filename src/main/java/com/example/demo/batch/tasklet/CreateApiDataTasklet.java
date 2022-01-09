@@ -1,9 +1,18 @@
 package com.example.demo.batch.tasklet;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -15,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.batch.bean.FreeApiDataBean;
 import com.example.demo.batch.bean.SickBedApiDataBean;
+import com.example.demo.batch.bean.SickBedApiUpdateDateBean;
 import com.example.demo.batch.repository.ApiDataRepository;
 
 @Component
@@ -76,33 +86,54 @@ public class CreateApiDataTasklet implements Tasklet {
 
 	/**
 	 * 病床APIData取得
+	 * 
+	 * @throws IOException
+	 * @throws InvalidFormatException
+	 * @throws EncryptedDocumentException
 	 */
-	private void insertSickBedDate() {
+	private void insertSickBedDate() throws EncryptedDocumentException, InvalidFormatException, IOException {
+		// Insert実施
 		RestTemplate restTemplate = new RestTemplate();
 		// APi取得
-		List<SickBedApiDataBean> sickBedApiDataList = this
-				.replacePercent(Arrays.asList(restTemplate.getForObject(urlSickBedApi, SickBedApiDataBean[].class)));
-		// Insert実施
-		repository.insertSickBedApiData(sickBedApiDataList);
+		List<SickBedApiUpdateDateBean> sickBedApiUpdateDateBeanList = Arrays
+				.asList(restTemplate.getForObject(urlSickBedApi, SickBedApiUpdateDateBean[].class));
+		// Excelファイルからデータを取得後、DBへ登録
+		repository.insertSickBedApiData(this.getSickBedApiDataBeanList(sickBedApiUpdateDateBeanList));
 	}
 
 	/**
-	 * Jsonのパーセントを除去する。
+	 * Excelファイルをダウンロード後、Dtoを作成
 	 * 
-	 * @param array 病床APIデータ
-	 * @return 病床APIデータ(編集済み)
+	 * @param sickBedApiUpdateDateBeanList
+	 * @return DB登録情報
+	 * @throws EncryptedDocumentException
+	 * @throws InvalidFormatException
+	 * @throws IOException
 	 */
-	private List<SickBedApiDataBean> replacePercent(List<SickBedApiDataBean> array) {
+	private List<SickBedApiDataBean> getSickBedApiDataBeanList(
+			List<SickBedApiUpdateDateBean> sickBedApiUpdateDateBeanList)
+			throws EncryptedDocumentException, InvalidFormatException, IOException {
 		List<SickBedApiDataBean> sickBedApiDataList = new ArrayList<>();
-		for (SickBedApiDataBean instance : array) {
+		// Excelファイル取得
+		URL fetchWebsite = new URL(sickBedApiUpdateDateBeanList.get(0).getExcelUrl());
+		File file = new File("tmp/SickBedApi.xlsx");
+		FileUtils.copyURLToFile(fetchWebsite, file);
 
+		// エクセルファイルへアクセス
+		Workbook excel;
+		excel = WorkbookFactory.create(new File("tmp/SickBedApi.xlsx"));
+		// シート名を指定
+		Sheet sheet = excel.getSheet("公表資料");
+		// ExcelからBeanに設定
+		for (int row = 8; row <= 54; row++) {
 			SickBedApiDataBean sickBedApiDataBean = new SickBedApiDataBean();
-			sickBedApiDataBean.setNameJa(instance.getNameJa());
-			sickBedApiDataBean.setAcceptHospitalBed(instance.getAcceptHospitalBed());
-			sickBedApiDataBean.setHospitalBedUseRate(instance.getHospitalBedUseRate().replace("%", ""));
-			sickBedApiDataBean.setAcceptInn(instance.getAcceptInn());
-			sickBedApiDataBean.setAcceptInnUseRate(instance.getAcceptInnUseRate().replace("%", ""));
-			sickBedApiDataBean.setUpdateDate(instance.getUpdateDate());
+			sickBedApiDataBean.setNameJa(
+					sheet.getRow(row).getCell(0).getStringCellValue().replaceAll("[0-9]", "").replaceAll(" ", ""));
+			sickBedApiDataBean.setAcceptHospitalBed((int) sheet.getRow(row).getCell(7).getNumericCellValue());
+			sickBedApiDataBean.setHospitalBedUseRate((int) sheet.getRow(row).getCell(9).getNumericCellValue());
+			sickBedApiDataBean.setAcceptInn((int) sheet.getRow(row).getCell(23).getNumericCellValue());
+			sickBedApiDataBean.setAcceptInnUseRate((int) sheet.getRow(row).getCell(25).getNumericCellValue());
+			sickBedApiDataBean.setUpdateDate(sickBedApiUpdateDateBeanList.get(0).getUpdateDate());
 
 			sickBedApiDataList.add(sickBedApiDataBean);
 		}

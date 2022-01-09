@@ -90,9 +90,9 @@
     		    	#{index}+1
     				,#{item.nameJa}
     				,#{item.acceptHospitalBed}
-    				,to_number(#{item.hospitalBedUseRate},'9,999,999,999')
+    				,#{item.hospitalBedUseRate}
     				,#{item.acceptInn}
-    				,to_number(#{item.acceptInnUseRate},'9,999,999,999')
+    				,#{item.acceptInnUseRate}
     				,to_date(#{item.updateDate},'yyyy-MM-dd')
     			)
     		</foreach>

@@ -33,6 +33,15 @@ dependencies {
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.20'
 	implementation "javax.xml.bind:jaxb-api:2.3.1"
     implementation "org.glassfish.jaxb:jaxb-runtime:2.3.1"
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi
+	implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+	
+	
+    
 }
 
 test {
